@@ -8,6 +8,8 @@ public void setup() {
 	for (int i = 0 ; i < lines.length; i++) {
 	  System.out.println(pigLatin(lines[i]));
 	} System.out.println(lines[0]);
+
+	//System.out.println(convertPL(lines));
 }
 public void draw() {
 }
@@ -44,25 +46,31 @@ if(sWord.length()>0){
 			return sWord.substring(findFirstVowel(sWord))+sWord.substring(0,findFirstVowel(sWord))+"ay";
 		}
 
-	} else return " ";
-} else return " ";
+	} else return "";
+} else return "";
 }
 
 public String[] convertPL(String text[]){
-	for(int i=0; i<text.length(); i++){
-		for(int x=0, x<text[i].length(); x++){
+	String[] temp = new String[text.length];
+	for(int i=0; i<text.length; i++){
+		for(int x=0; x<text[i].length(); x++){
 			String word = "";
+
+			//separate words
 			if(text[i].charAt(x) == ' '){
+				//subtract until find space if not then create 0
 				for(int q=x; q>0; q--){
 					if(text[i].charAt(q) == ' '){
 						word = text[i].substring(q, x+1);
 					}
 				}
 				if(word.equals("")){
-					word.text[i].substring(0, x+1);
+					word = text[i].substring(0, x+1);
 				}
+				word = pigLatin(word);
 			}
-			word = pigLatin(word);
+			temp[i] = temp[i] + word;
 		}
 	}
+	return temp;
 }
